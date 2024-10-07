@@ -42,7 +42,12 @@ class Endpoint_Wporg_Pattern_Test extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Verify the pattern response matches the schema.
+	 * Verify the pattern response matches the schema, plus strict type checking
+	 * for the array values.
+	 *
+	 * `rest_validate_value_from_schema` will check most values, but it also
+	 * "normalizes" array values to associative arrays, which does not happen
+	 * in practice, so we need to manually test those values.
 	 */
 	public function test_pattern_directory_api() {
 		$request = new WP_REST_Request( 'GET', '/wp/v2/wporg-pattern/' . self::$pattern_id );
@@ -58,5 +63,12 @@ class Endpoint_Wporg_Pattern_Test extends WP_UnitTestCase {
 
 		$result = rest_validate_value_from_schema( $pattern, $schema );
 		$this->assertTrue( $result );
+
+		// Pattern content should always exist.
+		$this->assertNotEmpty( $pattern['pattern_content'] );
+
+		// Check that these arrays are sequential, not associative arrays.
+		$this->assertTrue( array_is_list( $pattern['category_slugs'] ) );
+		$this->assertTrue( array_is_list( $pattern['meta']['wpop_block_types'] ) );
 	}
 }
