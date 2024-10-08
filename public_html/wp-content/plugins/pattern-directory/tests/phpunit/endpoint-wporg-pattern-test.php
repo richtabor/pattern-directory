@@ -65,10 +65,10 @@ class Endpoint_Wporg_Pattern_Test extends WP_UnitTestCase {
 		$this->assertTrue( $result );
 
 		// Pattern content should always exist.
-		$this->assertNotEmpty( $pattern['pattern_content'] );
+		$this->assertNotEmpty( $pattern['pattern_content'], 'Pattern content is empty.' );
 
 		// Check that these arrays are sequential, not associative arrays.
-		$this->assertTrue( array_is_list( $pattern['category_slugs'] ) );
-		$this->assertTrue( array_is_list( $pattern['meta']['wpop_block_types'] ) );
+		$this->assertTrue( array_is_list( $pattern['category_slugs'] ), 'Category slugs is not a sequential array.' );
+		$this->assertTrue( array_is_list( $pattern['meta']['wpop_block_types'] ), 'Block types is not a sequential array.' );
 	}
 }
