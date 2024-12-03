@@ -155,16 +155,16 @@ function get_curation_options( $options ) {
 	global $wp_query;
 	$current = is_string( $wp_query->get( 'curation' ) ) ? strtolower( $wp_query->get( 'curation' ) ) : '';
 
-	$label = __( 'Filter by', 'wporg-patterns' );
+	$label = __( 'Filter', 'wporg-patterns' );
 	switch ( $current ) {
 		case 'community':
-			$label = _x( 'Community', 'filter option label', 'wporg-patterns' );
+			$label = _x( 'Filter: Community', 'filter option label', 'wporg-patterns' );
 			break;
 		case 'core':
-			$label = _x( 'Curated', 'filter option label', 'wporg-patterns' );
+			$label = _x( 'Filter: Curated', 'filter option label', 'wporg-patterns' );
 			break;
 		default:
-			$label = _x( 'All', 'filter option label', 'wporg-patterns' );
+			$label = _x( 'Filter: All', 'filter option label', 'wporg-patterns' );
 			break;
 	}
 
@@ -202,13 +202,13 @@ function get_sort_options( $options ) {
 	$label = __( 'Sort', 'wporg-patterns' );
 	switch ( $sort ) {
 		case 'date_desc':
-			$label = __( 'Newest', 'wporg-patterns' );
+			$label = __( 'Sort: Newest', 'wporg-patterns' );
 			break;
 		case 'date_asc':
-			$label = __( 'Oldest', 'wporg-patterns' );
+			$label = __( 'Sort: Oldest', 'wporg-patterns' );
 			break;
 		case 'favorite_count_desc':
-			$label = __( 'Popular', 'wporg-patterns' );
+			$label = __( 'Sort: Popular', 'wporg-patterns' );
 			break;
 	}
 
